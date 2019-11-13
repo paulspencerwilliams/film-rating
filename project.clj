@@ -11,6 +11,7 @@
                  [org.xerial/sqlite-jdbc "3.27.2"]]
   :plugins [[duct/lein-duct "0.12.1"]]
   :main ^:skip-aot film-ratings.main
+  :uberjar-name "film-ratings.jar"
   :resource-paths ["resources" "target/resources"]
   :prep-tasks     ["javac" "compile" ["run" ":duct/compiler"]]
   :middleware     [lein-duct.plugin/middleware]
