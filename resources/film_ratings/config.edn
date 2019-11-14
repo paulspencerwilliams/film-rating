@@ -2,10 +2,9 @@
  {:duct.core/project-ns film-ratings
 
   :duct.router/ataraxy
-  {:routes {[:get "/example"] [:film-ratings.handler/example]}}
+  {:routes {[:get "/"] [:film-ratings.handler/index]}}
 
-  :film-ratings.handler/example
-  {:db #ig/ref :duct.database/sql}}
+  :film-ratings.handler/index {}}
 
  :duct.profile/dev   #duct/include "dev"
  :duct.profile/local #duct/include "local"
