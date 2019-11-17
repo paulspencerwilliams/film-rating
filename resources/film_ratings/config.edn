@@ -1,10 +1,19 @@
 {:duct.profile/base
-                      {:duct.core/project-ns       film-ratings
+                      {:duct.core/project-ns                  film-ratings
 
                        :duct.router/ataraxy
-                                                   {:routes {[:get "/"] [:film-ratings.handler/index]}}
+                                                              {:routes {[:get "/"]  [:film-ratings.handler/index]
+                                                                        "/add-film" {:get                             [:film-ratings.handler.film/show-create]
+                                                                                     [:post {film-form :form-params}] [:film-ratings.handler.film/create film-form]}}}
 
-                       :film-ratings.handler/index {}}
+                       :film-ratings.handler/index            {}
+                       :film-ratings.handler.film/show-create {}
+                       :film-ratings.handler.film/create      {:db #ig/ref :duct.database/sql}
+                       :duct.migrator/ragtime                 {:migrations [#ig/ref :film-ratings.migrations/create-film]}
+                       [:duct.migrator.ragtime/sql
+                        :film-ratings.migrations/create-film]
+                                                              {:up   ["create table film(id integer primary key, name text unique, description text, rating integer)"]
+                                                               :down ["drop table film"]}}
 
  :duct.profile/dev    #duct/include "dev"
  :duct.profile/local  #duct/include "local"
