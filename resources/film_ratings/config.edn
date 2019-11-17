@@ -1,17 +1,17 @@
 {:duct.profile/base
- {:duct.core/project-ns film-ratings
+                      {:duct.core/project-ns       film-ratings
 
-  :duct.router/ataraxy
-  {:routes {[:get "/"] [:film-ratings.handler/index]}}
+                       :duct.router/ataraxy
+                                                   {:routes {[:get "/"] [:film-ratings.handler/index]}}
 
-  :film-ratings.handler/index {}}
+                       :film-ratings.handler/index {}}
 
- :duct.profile/dev   #duct/include "dev"
- :duct.profile/local #duct/include "local"
- :duct.profile/prod  {}
+ :duct.profile/dev    #duct/include "dev"
+ :duct.profile/local  #duct/include "local"
+ :duct.profile/prod   {}
 
  :duct.module/logging {}
  :duct.module.web/site
- {}
+                      {}
  :duct.module/sql
- {}}
+                      {}}
