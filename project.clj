@@ -10,6 +10,7 @@
                  [duct/module.web "0.7.0"]
                  [org.xerial/sqlite-jdbc "3.27.2"]
                  [hiccup "1.0.5"]
+                 [org.postgresql/postgresql "42.2.8"]
                  [metosin/spec-tools "0.10.0"]]
   :plugins [[duct/lein-duct "0.12.1"]]
   :main ^:skip-aot film-ratings.main

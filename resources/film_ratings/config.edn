@@ -14,7 +14,7 @@
                        :duct.migrator/ragtime                 {:migrations [#ig/ref :film-ratings.migrations/create-film]}
                        [:duct.migrator.ragtime/sql
                         :film-ratings.migrations/create-film]
-                                                              {:up   ["create table film(id integer primary key, name text unique, description text, rating integer)"]
+                                                              {:up   ["create table film(id serial primary key, name text unique, description text, rating integer)"]
                                                                :down ["drop table film"]}}
 
  :duct.profile/dev    #duct/include "dev"
