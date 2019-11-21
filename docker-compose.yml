@@ -1,0 +1,20 @@
+version: '3.0'
+services:
+  postgres:
+    restart: 'always'
+    environment:
+      - "POSTGRES_USER=filmuser"
+      - "POSTGRES_DB=filmdb"
+      - "POSTGRES_PASSWORD=${DB_PASSWORD}"
+    volumes:
+      - /tmp/postgresdata:/var/lib/postgresql/data
+    image: 'postgres:alpine'
+  filmapp:
+    restart: 'always'
+    ports:
+      - '3000:3000'
+    environment:
+      - "JDBC_DATABASE_URL=jdbc:postgresql://postgres/filmdb?user=filmuser&password=${DB_PASSWORD}"
+    build:
+      context: .
+      dockerfile: Dockerfile
