@@ -8,7 +8,7 @@ executors:
       - image: circleci/buildpack-deps:stretch
 jobs:
   build:
-    working_directory: ~/cci-film-ratings # directory where steps will run
+    working_directory: ~/film-ratings # directory where steps will run
     docker:
       - image: circleci/clojure:lein-2.8.1
     environment:
