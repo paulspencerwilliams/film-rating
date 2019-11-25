@@ -62,8 +62,6 @@ jobs:
           command: |
             echo "${DOCKERHUB_PASS}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
             docker push $IMAGE_NAME:latest
-            docker push $IMAGE_NAME:{CIRCLE_TAG}
-
 workflows:
   version: 2.1
   main:
