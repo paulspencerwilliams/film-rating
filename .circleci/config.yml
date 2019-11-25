@@ -1,4 +1,11 @@
 version: 2.1
+executors:
+  docker-publisher:
+    working_directory: ~/film-ratings
+    environment:
+      IMAGE_NAME: paulspencerwilliams/film-ratings-app
+    docker:
+      - image: circleci/buildpack-deps:stretch
 jobs:
   build:
     working_directory: ~/cci-film-ratings # directory where steps will run
