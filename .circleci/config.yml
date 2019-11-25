@@ -48,6 +48,15 @@ jobs:
           root: ~/film-ratings
           paths:
             -  ./image.tar
+  publish-docker:
+    executor: docker-publisher
+    steps:
+      - attach_workspace:
+          at: .
+      - setup_remote_docker
+      - run:
+          name: Load archived Docker image
+          command: docker load -i image.tar
 workflows:
   version: 2.1
   main:
@@ -64,6 +73,14 @@ workflows:
       - build-docker:
           requires:
             - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^\d+\.\d+\.\d+$/
+      - publish-docker:
+          requires:
+            - build-docker
           filters:
             branches:
               ignore: /.*/
