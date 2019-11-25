@@ -24,6 +24,10 @@ jobs:
             - ~/.m2
           key: film-ratings-{{ checksum "project.clj" }}
       - run: lein do test, uberjar
+      - persist_to_workspace:
+          root: ~/film-ratings
+          paths:
+            - target
   build-docker:
     executor: docker-publisher
     steps:
