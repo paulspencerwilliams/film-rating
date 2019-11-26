@@ -58,9 +58,9 @@ jobs:
           name: Load archived Docker image
           command: docker load -i image.tar
       - run:
-          name: Publish Docker image to Docker Hub
+          name: Publish Docker image to Heroku
           command: |
-            echo "${DOCKERHUB_PASS}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
+            echo "${HEROKU_API_KEY}" | docker login -u "${HEROKU_USERNAME}" --password-stdin registry.heroku.com
             docker push $IMAGE_NAME:latest
             docker push $IMAGE_NAME:${CIRCLE_TAG}
 
