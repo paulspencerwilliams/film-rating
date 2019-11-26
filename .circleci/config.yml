@@ -3,7 +3,7 @@ executors:
   docker-publisher:
     working_directory: ~/film-ratings
     environment:
-      IMAGE_NAME: paulspencerwilliams/film-ratings-app
+      IMAGE_NAME: registry.heroku.com/damp-sierra-75477/web
     docker:
       - image: circleci/buildpack-deps:stretch
 jobs:
@@ -37,7 +37,7 @@ jobs:
       - setup_remote_docker
       - run:
           name: Build latest Docker image
-          command: docker build . -t registry.heroku.com/damp-sierra-75477/web
+          command: docker build . -t $IMAGE_NAME
       - run:
           name: Archive Docker images
           command: docker save -o image.tar $IMAGE_NAME
@@ -58,7 +58,7 @@ jobs:
           name: Publish Docker image to Heroku
           command: |
             echo "${HEROKU_API_KEY}" | docker login -u "${HEROKU_USERNAME}" --password-stdin registry.heroku.com
-            docker push registry.heroku.com/damp-sierra-75477/web
+            docker push $IMAGE_NAME
 
 workflows:
   version: 2.1
